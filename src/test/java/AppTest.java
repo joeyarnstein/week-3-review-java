@@ -17,22 +17,9 @@ public class AppTest extends FluentTest {
   public WebDriver getDefaultDriver() {
     return webDriver;
   }
-
-
-  @Before
-  public void setUp() {
-    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", null, null);
-  }
-
-  @After
-  public void tearDown() {
-    try(Connection con = DB.sql2o.open()) {
-      String deleteStylistsQuery = "DELETE FROM stylists *;";
-      // String deleteClientsQuery = "DELETE FROM restaurants *;";
-      con.createQuery(deleteStylistsQuery).executeUpdate();
-      // con.createQuery(deleteClientsQuery).executeUpdate();
-    }
-  }
+  
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
 
   @ClassRule
   public static ServerRule server = new ServerRule();
