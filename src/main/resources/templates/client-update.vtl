@@ -1,0 +1,18 @@
+<h4>$client.getClientName() is $stylist.getName()'s client</h4>
+
+<p>
+  Add note to $client.getClientName()'s profile
+</p>
+<form action="/clients/$client.getId()/update" method="post">
+  <label for="note">Add or Update Client notes</label>
+  <input type="text" name="note" id="note">
+  <button type="submit" class="btn"></button>
+</form>
+
+#if ($client.getNotes())
+<p>
+  Note's on $client.getClientName():
+  <br>
+  $client.getNotes()
+</p>
+#end

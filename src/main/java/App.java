@@ -47,6 +47,28 @@ public class App {
       response.redirect("/stylists/" + thisStylist.getId());
       return null;
     });
+
+    get("client/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      int clientId = Integer.parseInt(request.params("id"));
+      Client currentClient = Client.find(clientId);
+      int stylistId = currentClient.getStylistId();
+      Stylist assignedStylist = Stylist.find(stylistId);
+      model.put("stylist", assignedStylist);
+      model.put("client", currentClient);
+      model.put("template", "templates/client-update.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("clients/:id/update", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String newNote = request.queryParams("note");
+      int clientId = Integer.parseInt(request.params("id"));
+      Client thisClient = Client.find(clientId);
+      thisClient.updateNotes(newNote);
+      response.redirect("/client/" + thisClient.getId());
+      return null;
+    });
   }
 
 }

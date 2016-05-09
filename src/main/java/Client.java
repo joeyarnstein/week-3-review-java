@@ -5,7 +5,7 @@ public class Client {
   private int id;
   private String clientName;
   private int stylistId;
-  //private String notes;
+  private String notes;
 
   public Client(String clientName, int stylistId) {
     this.clientName = clientName;
@@ -18,6 +18,10 @@ public class Client {
 
   public int getId() {
     return id;
+  }
+
+  public String getNotes(){
+    return notes;
   }
 
   public int getStylistId() {
@@ -45,7 +49,7 @@ public class Client {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO clients(clientName, stylistId) VALUES (:clientName, :stylistId)";
+      String sql = "INSERT INTO clients(clientName, stylistId) VALUES (:clientName, :stylistId);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("clientName", this.clientName)
         .addParameter("stylistId", this.stylistId)
@@ -53,10 +57,16 @@ public class Client {
         .getKey();
     }
   }
-  //
-  // public void updateNotes(){
-  //   try(Conn)
-  // }
+
+  public void updateNotes(String notesOnClient) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE clients SET notes =:notes WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("notes", notesOnClient)
+        .addParameter("id", this.getId())
+        .executeUpdate();
+    }
+  }
 
   public static Client find(int id) {
     try(Connection con = DB.sql2o.open()) {

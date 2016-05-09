@@ -51,6 +51,7 @@ public class AppTest extends FluentTest {
     click("a", withText("Sara"));
     fill("#client").with("Tara");
     submit(".btn");
+    click("a", withText("Tara"));
     assertThat(pageSource()).contains("Tara is Sara's client");
   }
 }
