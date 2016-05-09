@@ -44,17 +44,17 @@ public class Stylist{
         .getKey();
     }
   }
-  //
-  // public static Stylist find(int id) {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT * FROM stylists where id=:id";
-  //     Stylist stylist = con.createQuery(sql)
-  //       .addParameter("id", id)
-  //       .executeAndFetchFirst(Stylist.class);
-  //     return stylist;
-  //   }
-  // }
-  //
+
+  public static Stylist find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM stylists where id=:id";
+      Stylist stylist = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Stylist.class);
+      return stylist;
+    }
+  }
+
   // public List<Clients> getClients(){
   //   try(Connection con = DB.sql2o.open()) {
   //     String sql = "SELECT * FROM clients WHERE stylistId=:id";
