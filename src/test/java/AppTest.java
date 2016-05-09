@@ -5,7 +5,7 @@ import org.fluentlenium.adapter.FluentTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import static org.assertj.core.api.Assertions.assertThat;
-//import static org.fluentlenium.core.filter.FilterConstructor.*;
+import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 public class AppTest extends FluentTest {
   public WebDriver webDriver = new HtmlUnitDriver();
@@ -34,5 +34,23 @@ public class AppTest extends FluentTest {
     submit(".btn");
     assertThat(pageSource()).contains("Sara");
   }
+  @Test
+  public void stylistDynamicPageIsGeneratedAndDisplayed() {
+    goTo("http://localhost:4567/");
+    fill("#stylist").with("Sara");
+    submit(".btn");
+    click("a", withText("Sara"));
+    assertThat(pageSource()).contains("Add client to Sara's client list");
+  }
 
+  @Test
+  public void stylistClientFormDiplayedAndInstantiatesCLientsCorrectly() {
+    goTo("http://localhost:4567/");
+    fill("#stylist").with("Sara");
+    submit(".btn");
+    click("a", withText("Sara"));
+    fill("#client").with("Tara");
+    submit(".btn");
+    assertThat(pageSource()).contains("Tara is Sara's client");
+  }
 }

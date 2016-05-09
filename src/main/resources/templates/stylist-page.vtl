@@ -1,0 +1,18 @@
+<p>
+  Add client to $stylist.getName()'s client list
+</p>
+<form action="/stylists/$stylist.getId()/client" method="post">
+  <label for="client">Enter New Client Name</label>
+  <input type="text" name="client" id="client">
+  <button type="submit" class="btn"></button>
+</form>
+
+<p>
+  $stylist.getName()'s clients:
+</p>
+
+<ul>
+  #foreach ($client in $clients)
+    <li><a href="/client/$stylist.getId()">$client.getClientName()</a></li>
+  #end
+</ul>

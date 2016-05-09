@@ -5,6 +5,7 @@ public class Client {
   private int id;
   private String clientName;
   private int stylistId;
+  //private String notes;
 
   public Client(String clientName, int stylistId) {
     this.clientName = clientName;
@@ -52,7 +53,11 @@ public class Client {
         .getKey();
     }
   }
-  
+  //
+  // public void updateNotes(){
+  //   try(Conn)
+  // }
+
   public static Client find(int id) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM clients where id=:id";
