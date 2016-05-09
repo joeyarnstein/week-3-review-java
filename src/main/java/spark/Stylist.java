@@ -1,8 +1,12 @@
 public class Stylist{
-  int id;
-  String stylist;
+  private int id;
+  private String stylist;
 
   public Stylist(String nameOfSytlist){
     this.stylist = nameOfSytlist;
+  }
+
+  public String getName(){
+    return stylist;
   }
 }

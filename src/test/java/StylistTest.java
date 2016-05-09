@@ -11,5 +11,11 @@ public class StylistTest {
   public void Stylist_instantiatesCorrectly_true() {
     Stylist test = new Stylist("Charlie");
     assertEquals(true, test instanceof Stylist);
-  } 
+  }
+
+  @Test
+  public void Stylist_instantiatesWithStylistName_Bob(){
+    Stylist test = new Stylist("Bob");
+    assertEquals("Bob", test.getName());
+  }
 }
