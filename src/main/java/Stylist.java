@@ -55,12 +55,12 @@ public class Stylist{
     }
   }
 
-  // public List<Clients> getClients(){
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT * FROM clients WHERE stylistId=:id";
-  //     return con.createQuery(sql)
-  //     .addParameter("id", this.id)
-  //     .executeAndFetch(Client.class);
-  //   }
-  // }
+  public List<Client> getClients(){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM clients WHERE stylistId=:id";
+      return con.createQuery(sql)
+      .addParameter("id", this.id)
+      .executeAndFetch(Client.class);
+    }
+  }
 }
