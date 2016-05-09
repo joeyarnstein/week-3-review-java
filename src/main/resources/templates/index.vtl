@@ -3,5 +3,13 @@
 <form action="/stylists" method="post">
   <label for="stylist">Stylist Name</label>
   <input type="text" name="stylist" id="stylist">
-  <button type="sumbit" name="addStylist" class="btn">Add Stylist</button>
+  <button type="submit" class="btn">Add Stylist</button>
 </form>
+
+<h4>Stylists</h4>
+<ul>
+  #foreach ($stylist in $stylists)
+    <li><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
+  #end
+</ul>
+<!-- <a href="/stylists/new">Add New Category</a> -->
