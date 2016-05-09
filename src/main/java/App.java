@@ -15,12 +15,13 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/stylists", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      String stylistName = request.queryParams("stylist");
-      Stylist newStylist = new Stylist(stylistName);
-      model.put("template", )
-    }, new VelocityTemplateEngine()):
+    // post("/stylists", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<String, Object>();
+    //   String stylistName = request.queryParams("stylist");
+    //   Stylist newStylist = new Stylist(stylistName);
+    //   model.put("template", "template/index.vtl");
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
 
   }
 

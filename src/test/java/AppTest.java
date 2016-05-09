@@ -1,4 +1,6 @@
 import org.sql2o.*;
+import org.junit.*; // for @Before and @After
+
 import org.fluentlenium.adapter.FluentTest;
 import static org.fluentlenium.core.filter.FilterConstructor.*;
 import org.junit.ClassRule;
@@ -25,10 +27,10 @@ public class AppTest extends FluentTest {
   @After
   public void tearDown() {
     try(Connection con = DB.sql2o.open()) {
-      String deleteCuisinesQuery = "DELETE FROM cuisines *;";
-      // String deleteRestaurantsQuery = "DELETE FROM restaurants *;";
-      con.createQuery(deleteCuisineQuery).executeUpdate();
-      // con.createQuery(deleteRestaurantsQuery).executeUpdate();
+      String deleteStylistsQuery = "DELETE FROM stylists *;";
+      // String deleteClientsQuery = "DELETE FROM restaurants *;";
+      con.createQuery(deleteStylistsQuery).executeUpdate();
+      // con.createQuery(deleteClientsQuery).executeUpdate();
     }
   }
 
@@ -38,6 +40,7 @@ public class AppTest extends FluentTest {
   @Test
   public void rootTest() {
     goTo("http://localhost:4567/");
+    assertThat(pageSource()).contains("Add Stylist Name");
   }
 
 }
