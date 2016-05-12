@@ -16,16 +16,14 @@ An exercise in Java for integration testing, BBD, using Sql databases. App allow
 * _In PSQL:
 CREATE DATABASE hair_salon;
 CREATE TABLE stylists (id serial PRIMARY KEY, name varchar);
-CREATE TABLE clients (id serial PRIMARY KEY, name varchar, stylistId int, notes varchar);
+CREATE TABLE clients (id serial PRIMARY KEY, clientname varchar, stylistid int, notes varchar);
+CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;
 
 * _Navigate back to the directory where this repository has been cloned and run gradle:_
 ```
 $ gradle run
 ```
 * _Open localhost:4567 in a browser._
-
-## _for testing
-CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;
 
 ## Known Bugs
 
